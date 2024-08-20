@@ -196,7 +196,9 @@
                 } else if ((yourMonth === 2 && (yourYear % 4 === 0)) && yourDay === 29) {
                     alert('You entered the date 29/2/' + yourYear + '. \n\nThe next date is 1/3/' + yourYear);
                 } else if ((yourMonth === 2 && (yourYear % 4 !== 0)) && yourDay === 28) {
-                    alert('You entered the date 29/2/' + yourYear + '. \n\nThe next date is 1/3/' + yourYear);
+                    alert('You entered the date 28/2/' + yourYear + '. \n\nThe next date is 1/3/' + yourYear);
+                } else if (yourDay === 31) {
+                    alert('You entered the date 31/' + yourMonth + '/' + yourYear + '. \n\nThe next date is 1/' + nextMonth + '/' + yourYear);
                 } else {
                     alert('You entered the date ' + yourDay + '/' + yourMonth + '/' + yourYear + '. \n\nThe next date is ' + nextDay + '/' + yourMonth + '/' + yourYear);
                 }
