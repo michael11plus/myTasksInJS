@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Tasks Set</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <header>
+        <img src="./top-image.png" class="top-image"/>
+        <h1>JavaScript Excercise Tasks</h1>
+        <p>Welcome to my set of basic JavaScript tasks.</p>    
+    </header>
+    <div class="buttons">
+        <button onclick="getAgeGroup()">
+            Determine Age Group
+        </button>
+        <button onclick="getLeapYear()">
+            Determine Leap Year
+        </button>
+        <button onclick="convertCurrency()">
+            Convert currency
+        </button>
+        <button onclick="getDiscount()">
+            Get Discount
+        </button>
+        <button onclick="compareCircleData()">
+            Compare circle area and circumference
+        </button>
+        <button onclick="quiz()">
+            Short Quiz 
+            <span class="rating">( !! )</span>
+        </button>
+        <button onclick="getNextDay()">
+            Get Next Day 
+            <span class="rating">( !! )</span>
+        </button>
+        <button onclick="calculateBasic()">
+            Basic Calculator 
+            <span class="rating">( !! )</span>
+        </button>
+    </div>
+    
+    
+    <script>
+
+// Ask user for age and determine his age group.
+        function getAgeGroup() {
+            const age = parseInt(prompt("Enter your age:"));
+            if (age >= 0 && age <= 2) {
+                alert(`At age ${age}, you are a baby.`);
+            } else if (age >= 3 && age <= 11) {
+                alert(`At age ${age}, you are a child.`);
+            } else if (age >= 12 && age <= 18) {
+                alert(`At age ${age}, you are an adolescent.`);
+            } else if (age >= 19 && age <= 60) {
+                alert(`At age ${age}, you are an adult.`);
+            } else if (age > 60) {
+                alert(`At age ${age}, you are a senior.`);
+            } else {
+                alert("You haven't entered your age correctly.");
+            }
+        }
+
+// Ask user for year and determine whether it's a leap one or not.
+        function getLeapYear() {
+            const year = parseInt(prompt("Enter a year to determine leap:"));
+            if((year % 400 === 0)) {
+                alert('Year ' + year + ' is a leap year.');
+            } else if ((year % 4 === 0) && (year % 100 !== 0)) {
+                alert('Year ' + year + ' is a leap year.');
+            } else {
+                alert('Year ' + year + ' is NOT a leap year.');
+            }
+        }
+
+// Ask user for amount in USD and currency to convert to, and recieve corresponding amount. Round to two digits
+        function convertCurrency() {
+            const amountUSD = parseInt(prompt("Enter amount of USD to convert:"));
+            const currency = prompt("Convert either to EUR, CZK, GBP or JPY:");
+            const toEUR = 0.90;
+            const toCZK = 22.66;
+            const toGBP = 0.77;
+            const toJPY = 146.11;
+            let finalAmount = 1;
+            
+            if (currency.toUpperCase() === "EUR") {
+                finalAmount = (amountUSD * toEUR).toFixed(2);
+                alert('Your amount of ' + amountUSD + ' USD is converted to ' + finalAmount + ' EUR.');
+            } else if (currency.toUpperCase() === "CZK") {
+                finalAmount = (amountUSD * toCZK).toFixed(2);
+                alert('Your amount of ' + amountUSD + ' USD is converted to ' + finalAmount + ' CZK.');
+            } else if (currency.toUpperCase() === "GBP") {
+                finalAmount = (amountUSD * toGBP).toFixed(2);
+                alert('Your amount of ' + amountUSD + ' USD is converted to ' + finalAmount + ' GBP.');
+            } else if (currency.toUpperCase() === "JPY") {
+                finalAmount = (amountUSD * toJPY).toFixed(2);
+                alert('Your amount of ' + amountUSD + ' USD is converted to ' + finalAmount + ' JPY.');
+            } else {
+                alert('Your amount of ' + amountUSD + ' USD cannot be converted to this currency.');    
+            } 
+        }
+
+//Ask user for purchase amount and display discount (200-300: 3%;  300-500: 5%;  500+: 10%).
+        function getDiscount() {
+            const amountPaid = parseInt(prompt("Enter cost of your purchase"));
+            const finalPrice1 = 0.97;
+            const finalPrice2 = 0.95;
+            const finalPrice3 = 0.93;
+            let finalPrice = 0;
+            if (amountPaid >= 200 && amountPaid < 300) {
+                finalPrice = (amountPaid * finalPrice1).toFixed(2);
+                alert('Your purchase cost ' + amountPaid + ', and after 3% discount it now makes ' + finalPrice);
+            } else if (amountPaid >= 300 && amountPaid < 500) {
+                finalPrice = (amountPaid * finalPrice2).toFixed(2);
+                alert('Your purchase cost ' + amountPaid + ', and after 5% discount it now makes ' + finalPrice);
+            } else if (amountPaid >= 500) {
+                finalPrice = (amountPaid * finalPrice3).toFixed(2);
+                alert('Your purchase cost ' + amountPaid + ', and after 10% discount it now makes ' + finalPrice);
+            } else {
+                alert('Your purchase cost ' + amountPaid + ', and there is no discount for that');
+            }
+        }
+
+//Ask the user for circumference and then for area of circle and check if they both correspond to the same circle
+        function compareCircleData() {
+            let circumference = parseInt(prompt("Enter circumference in square centimeters"));
+            let area = parseInt(prompt("Enter area in square centimeters"));
+
+            let radius1 = circumference / 2 / Math.PI;
+            let radius2 = Math.sqrt(area / Math.PI);
+
+            if (radius1.toFixed(2) === radius2.toFixed(2)) {
+                alert(`These circles are the same, the first has a radius of ${radius1.toFixed(1)} cm and the second also has a radius of ${radius2.toFixed(1)} cm`)
+            } else (
+                alert(`These circles vary, because the first has a radius of ${radius1.toFixed(2)} cm while the second has a radius of ${radius2.toFixed(2)} cm`)     
+            )
+        }
+
+//Give the user 3 questions, each for max 2 points and at the end, display the total points to the user.
+        function quiz() {
+            let pointsCount = 0;
+            const answer1 = prompt("What are the inhabitants of Sweden called?");
+            const answer2 = prompt("Where is Macchu Picchu located? \n - 2 points for country \n - 1 point for continent");
+            const answer3 = prompt("What is the full name of the Czech president? \n - 2 points for full name \n - 1 point for one name");
+
+            if ((answer1.toUpperCase() == "SWEDE") || (answer1.toUpperCase() == "SWEDES")) {
+                pointsCount += 2;
+            } else if (answer1.toUpperCase() == "SWEDISH") {
+                pointsCount += 1;
+            }
+
+            if (answer2.toUpperCase() == "PERU") {
+                pointsCount += 2;
+            } else if (answer2.toUpperCase() == "SOUTH AMERICA") {
+                pointsCount += 1;
+            }
+
+            if ((answer3.toUpperCase() == "PETR PAVEL") || (answer3.toUpperCase() == "PAVEL PETR")) {
+                pointsCount += 2;
+            } else if ((answer3.toUpperCase() == "PAVEL") || (answer3.toUpperCase() == "PETR")) {
+                pointsCount += 1;
+            }
+
+            alert('After responding to the three questions, your points count is ' + pointsCount + ' out of 6. \nThat is ' + (pointsCount / 6 * 100).toFixed(2) + '%.')
+        }
+
+//Ask the user for a date (day, month, year) and display the next date. Also, consider transitioning into new year.
+        function getNextDay() {
+            const yourDay = parseInt(prompt("Enter a day"));
+            const yourMonth = parseInt(prompt("Enter a month"));
+            const yourYear = parseInt(prompt("Enter a year"));
+
+            let nextDay = yourDay + 1;
+            let nextMonth = yourMonth + 1;
+            let nextYear = yourYear + 1;
+
+            //First check for values outside the calendar 
+            if (yourDay > 31) {
+                alert('The day does not make sense');
+            } else if (yourMonth > 12) {
+                alert('The month does not make sense');
+            } else if ((yourMonth === 4 || yourMonth === 6 || yourMonth === 9 || yourMonth === 11) && yourDay > 30) {
+                alert('The day does not make sense');
+            } else if ((yourMonth === 2 && (yourYear % 4 === 0)) && yourDay > 29) {
+                alert('The day does not make sense');
+            } else if ((yourMonth === 2 && (yourYear % 4 !== 0)) && yourDay > 28) {
+                alert('The day does not make sense');
+            } else {
+                //Next, check for the last days of the months
+                if (yourDay === 31 && yourMonth === 12) {
+                    alert('You entered the date 31/12/' + yourYear + '. \n\nThe next date is 1/1/' + nextYear);
+                } else if ((yourMonth === 4 || yourMonth === 6 || yourMonth === 9 || yourMonth === 11) && yourDay === 30) {
+                    alert('You entered the date 30/' + yourMonth + '/' + yourYear + '. \n\nThe next date is 1/' + nextMonth + '/' + yourYear);                    
+                } else if ((yourMonth === 2 && (yourYear % 4 === 0)) && yourDay === 29) {
+                    alert('You entered the date 29/2/' + yourYear + '. \n\nThe next date is 1/3/' + yourYear);
+                } else if ((yourMonth === 2 && (yourYear % 4 !== 0)) && yourDay === 28) {
+                    alert('You entered the date 29/2/' + yourYear + '. \n\nThe next date is 1/3/' + yourYear);
+                } else {
+                    alert('You entered the date ' + yourDay + '/' + yourMonth + '/' + yourYear + '. \n\nThe next date is ' + nextDay + '/' + yourMonth + '/' + yourYear);
+                }
+            }
+        }
+//Create a calculator with operations for + and - and * and /.
+    function calculateBasic() {
+
+            function calculate(num1, operator, num2) {
+                switch (operator) {
+                    case '+':
+                        return num1 + num2;
+                    case '-':
+                        return num1 - num2;
+                    case '*':
+                        return num1 * num2;
+                    case '/':
+                        if (num2 !== 0) {
+                            return num1 / num2;
+                        } else {
+                            return "Error: Division by ZERO";
+                        }
+                    default:
+                        return "Invalid operator";
+                }
+            }
+
+            let num1 = parseFloat(prompt("Enter the first number: "));
+            let operator = prompt("Enter the operator +, -, / or * ");
+            let num2 = parseFloat(prompt("Enter the second number: "));
+            let result = calculate(num1, operator, num2);
+            alert("Operation " + num1 + " " + operator + " " + num2 + " = " + result.toFixed(3));
+            }
+
+    </script>
+</body>
+</html>
